@@ -1,0 +1,29 @@
+{
+  "name": "backend-22",
+  "version": "1.0.0",
+  "description": "Repository for backend subject of HvA",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chazzers/backend-22.git"
+  },
+  "author": "Chazz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Chazzers/backend-22/issues"
+  },
+  "homepage": "https://github.com/Chazzers/backend-22#readme",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.2",
+    "mongoose": "^6.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
