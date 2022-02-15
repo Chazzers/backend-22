@@ -1,9 +1,15 @@
-// server config
+// server packages
 const express = require('express')
 const app = express()
 const port = 3000
 const mongoose = require('mongoose')
+
 require('dotenv').config()
+
+
+// npm packages
+const expressLayouts = require('express-ejs-layouts')
+
 
 
 // Controller render functions
@@ -19,6 +25,8 @@ const uri = process.env.MONGODB_URI
 mongoose.connect(uri)
 
 app.use(express.static('public'))
+	.use(expressLayouts)
+	.set('layout', './layouts/layout.ejs')
 	.set('view engine', 'ejs')
 
 	.get('/', renderHome)
@@ -26,4 +34,4 @@ app.use(express.static('public'))
 
 	.post('/createAccount', createAccount)
 	
-	.listen(process.env.PORT || port, () => console.log(`Example app listening on port ${port}!`));
+	.listen(process.env.PORT || port, () => console.log(`Example app listening on port http:'//localhost:${port}!`));
