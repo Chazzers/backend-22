@@ -1,7 +1,8 @@
 const renderCreateAccount = (req, res) => {
+	const title = 'Create Account'
 	return res.render('create-account', {
-		title: 'Create Account'
+		title: title
 	})
 } 
 
-module.exports = renderCreateAccount
+export default renderCreateAccount

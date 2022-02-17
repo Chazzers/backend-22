@@ -1,37 +1,44 @@
 // server packages
-const express = require('express')
+import express from 'express'
 const app = express()
 const port = 3000
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
 
-require('dotenv').config()
-
+import {} from 'dotenv/config'
 
 // npm packages
-const expressLayouts = require('express-ejs-layouts')
-
-
+import { engine } from 'express-handlebars'
 
 // Controller render functions
-const renderHome = require('./controllers/render/renderHome.js')
-const renderCreateAccount = require('./controllers/render/renderCreateAccount')
+import renderHome from './controllers/render/renderHome.js'
+import renderCreateAccount from './controllers/render/renderCreateAccount.js'
 
 // Controller helper functions
-const createAccount = require('./controllers/post/createAccount.js')
-
+import createAccount from './controllers/post/createAccount.js'
 
 const uri = process.env.MONGODB_URI
 
 mongoose.connect(uri)
 
 app.use(express.static('public'))
-	.use(expressLayouts)
-	.set('layout', './layouts/layout.ejs')
-	.set('view engine', 'ejs')
+	.use(express.urlencoded({
+		extended: true
+	}))
+	.use(express.json())
+
+	.engine('hbs', engine({
+		defaultLayout: 'layout', 
+		extname: '.hbs',
+		partialsDir: './views/partials',
+		layoutsDir: './views/layouts'
+	}))
+
+	.set('view engine', 'hbs')
+	.set('views', './views')
 
 	.get('/', renderHome)
 	.get('/create-account', renderCreateAccount)
 
 	.post('/createAccount', createAccount)
 	
-	.listen(process.env.PORT || port, () => console.log(`Example app listening on port http:'//localhost:${port}!`));
+	.listen(process.env.PORT || port, () => console.log(`Example app listening on port http://localhost:${port}!`));

@@ -1,8 +1,9 @@
-const  renderHome = (req, res) => {
+const renderHome = (req, res) => {
 	const title = 'Home'
-	return res.render('home', {
-		title: title
+	return res.render('index', {
+		title: title,
+		layout: 'layout'
 	})
 }
 
-module.exports = renderHome
+export default renderHome

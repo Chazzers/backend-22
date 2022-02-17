@@ -1,9 +1,11 @@
-const User = require('../../models/User.js')
-const extractAllUsernames = require('../helpers/extractAllUsernames.js')
+import User from '../../models/User.js'
+import extractAllUsernames from '../helpers/extractAllUsernames.js'
 
 const createAccount = async (req, res) => {
+	console.log(req)
+	console.log(req.body)
 	const { username, password, age } = req.body
-	const users = User.find({})
+	const users = await User.find({})
 
 	const usernames = extractAllUsernames(users)
 
@@ -24,4 +26,4 @@ const createAccount = async (req, res) => {
 }
 
 
-module.exports = createAccount
+export default createAccount
