@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Chazzers/backend-22#readme",
   "dependencies": {
+    "compression": "^1.7.4",
     "dotenv": "^16.0.0",
     "ejs": "^3.1.6",
     "express": "^4.17.2",

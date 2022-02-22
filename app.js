@@ -3,6 +3,7 @@ import express from 'express'
 const app = express()
 const port = 3000
 import mongoose from 'mongoose'
+import compression from 'compression'
 
 import {} from 'dotenv/config'
 
@@ -25,6 +26,7 @@ app.use(express.static('public'))
 		extended: true
 	}))
 	.use(express.json())
+	.use(compression)
 
 	.engine('hbs', engine({
 		defaultLayout: 'layout', 
