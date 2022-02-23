@@ -1,9 +1,30 @@
 <form action="createAccount" method="POST">
 	<label for="username">Username</label>
-	<input type="text" id="username" name="username">
+	<input type="text" id="username" name="username" required>
+
 	<label for="password">Password</label>
-	<input type="password" id="password" name="password">
+	<input type="password" id="password" name="password" required>
+
 	<label for="age">Age</label>
-	<input type="number" id="age" name="age">
+	<input type="number" id="age" name="age" required>
+
+	{{#if hobbies.length}}
+		{{#each hobbies}}
+			<label for="hobby-{{@index}}">Hobbies</label>
+			<input type="text" name="hobbies" id="hobby-{{@index}}">
+		{{/each}}
+	{{else}}
+		<label for="hobby-0">Hobbies</label>
+		<input type="text" name="hobbies" id="hobby-0">
+	{{/if}}
+
+	
+	
+
+	<button type="submit" formaction="createAccount" value="add" name="hobbies">Add Hobby</button>
+
+	<button type="submit" formaction="createAccount" value="remove" name="hobbies">Remove Hobby</button>
+
 	<button type="submit">Create Account</button>
+
 </form>

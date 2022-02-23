@@ -13,6 +13,7 @@ import { engine } from 'express-handlebars'
 // Controller render functions
 import renderHome from './controllers/render/renderHome.js'
 import renderCreateAccount from './controllers/render/renderCreateAccount.js'
+import renderLogin from './controllers/render/renderLogin.js'
 
 // Controller helper functions
 import createAccount from './controllers/post/createAccount.js'
@@ -26,7 +27,7 @@ app.use(express.static('public'))
 		extended: true
 	}))
 	.use(express.json())
-	.use(compression)
+	// .use(compression())
 
 	.engine('hbs', engine({
 		defaultLayout: 'layout', 
@@ -40,6 +41,7 @@ app.use(express.static('public'))
 
 	.get('/', renderHome)
 	.get('/create-account', renderCreateAccount)
+	.get('/login', renderLogin)
 
 	.post('/createAccount', createAccount)
 	
