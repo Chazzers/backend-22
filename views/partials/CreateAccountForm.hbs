@@ -1,29 +1,44 @@
 <form action="createAccount" method="POST">
-	<label for="username">Username</label>
-	<input type="text" id="username" name="username" required>
+	{{#if usernameTaken }}
+		<label class="label-error" for="username">Username</label>
+		<input class="input-error" type="text" id="username" name="username">
+	{{else}}
+		<label for="username">Username</label>
+		<input type="text" id="username" name="username">
+	{{/if}}
 
-	<label for="password">Password</label>
-	<input type="password" id="password" name="password" required>
+	{{#if passwordTaken}}
+		<label class="label-error" for="password">Password</label>
+		<input class="input-error" type="password" id="password" name="password">
+	{{else}}
+		<label for="password">Password</label>
+		<input type="password" id="password" name="password">
+	{{/if}}
 
-	<label for="age">Age</label>
-	<input type="number" id="age" name="age" required>
+	{{#if under18}}
+		<label class="label-error" for="age">Age</label>
+		<input class="input-error" type="number" id="age" name="age">
+	{{else}}
+		<label for="age">Age</label>
+		<input type="number" id="age" name="age">
+	{{/if}}
 
 	{{#if hobbies.length}}
 		{{#each hobbies}}
-			<label for="hobby-{{@index}}">Hobbies</label>
-			<input type="text" name="hobbies" id="hobby-{{@index}}">
+			<label for="hobby-{{@index}}">Hobby {{math @index '+' 1}}</label>
+			<input type="text" name="hobbies" id="hobby-{{@index}}" value="{{this}}">
 		{{/each}}
 	{{else}}
-		<label for="hobby-0">Hobbies</label>
+		<label for="hobby-0">Hobby</label>
 		<input type="text" name="hobbies" id="hobby-0">
 	{{/if}}
 
 	
 	
 
-	<button type="submit" formaction="createAccount" value="add" name="hobbies">Add Hobby</button>
+	<button type="submit" formaction="createAccount" value="add" name="hobbyAmount">Add Hobby</button>
 
-	<button type="submit" formaction="createAccount" value="remove" name="hobbies">Remove Hobby</button>
+	<button type="submit" formaction="createAccount" value="remove" name="hobbyAmount">Remove Hobby</button>
 
 	<button type="submit">Create Account</button>
 

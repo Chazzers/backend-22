@@ -27,13 +27,27 @@ app.use(express.static('public'))
 		extended: true
 	}))
 	.use(express.json())
-	// .use(compression())
+	.use(compression())
 
 	.engine('hbs', engine({
 		defaultLayout: 'layout', 
 		extname: '.hbs',
 		partialsDir: './views/partials',
-		layoutsDir: './views/layouts'
+		layoutsDir: './views/layouts',
+		helpers: {
+			//https://stackoverflow.com/questions/33059203/error-missing-helper-in-handlebars-js/46317662#46317662
+			math: (lvalue, operator, rvalue) => {
+				lvalue = parseFloat(lvalue)
+				rvalue = parseFloat(rvalue)
+				return {
+					'+': lvalue + rvalue,
+					'-': lvalue - rvalue,
+					'*': lvalue * rvalue,
+					'/': lvalue / rvalue,
+					'%': lvalue % rvalue
+				}[operator]
+			}
+		}
 	}))
 
 	.set('view engine', 'hbs')
@@ -45,4 +59,4 @@ app.use(express.static('public'))
 
 	.post('/createAccount', createAccount)
 	
-	.listen(process.env.PORT || port, () => console.log(`Example app listening on port http://localhost:${port}!`));
+	.listen(process.env.PORT || port, () => console.log(`Example app listening on port http://localhost:${port}!`))
