@@ -16,20 +16,13 @@ const createAccount = async (req, res) => {
 
 	console.log(hobbies)
 
+	// inspired by https://github.com/Chazzers/browser-technologies-2021
+
 	if(hobbyAmount === 'remove' && typeof hobbies === 'object') hobbies.pop()
 	const hobbyArray = typeof hobbies === 'string' ? [hobbies] : hobbies
 	if(hobbyArray) hobbyArray.forEach(hobby => hobbyValues.push(hobby))
 	if(hobbyAmount === 'add') hobbyValues.push('')
 	
-
-	// const splitHobbyValues = hobbies ? hobbies.split(',') : hobbies
-	
-	// const transformHobbies = typeof transformToArray === 'object' ? transformToArray.map((hobby, index) => ({
-	// 	hobbyName: hobby,
-	// 	hobbyNumber: index + 1 
-	// })) : hobbies
-	// if(hobbyAmount === 'remove') transformHobbies.pop()
-	console.log(hobbyValues)
 	if(usernameTaken || passwordTaken || under18) {
 		return res.render('create-account', {
 			title: 'Create Account',
