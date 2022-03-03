@@ -1,27 +1,66 @@
-<form action="createAccount" method="POST">
+<form action="create-account" method="POST">
 	{{#if usernameTaken }}
 		<label class="label-error" for="username">Username</label>
-		<input class="input-error" type="text" id="username" name="username">
+		<input class="input-error" type="text" id="username" name="username" value="{{ username }}">
 	{{else}}
+		{{#if username}}
+		<label for="username">Username</label>
+		<input type="text" id="username" name="username" value="{{ username }}">
+		{{else}}
 		<label for="username">Username</label>
 		<input type="text" id="username" name="username">
+		{{/if}}
+	{{/if}}
+	{{#if firstName}}
+		<label for="first-name">First name</label>
+		<input type="text" id="first-name" name="firstName" value="{{ firstName }}">
+	{{else}}
+		<label for="first-name">First name</label>
+		<input type="text" id="first-name" name="firstName">
+	{{/if}}
+
+	{{#if lastName}}
+		<label for="last-name">Last name</label>
+		<input type="text" id="last-name" name="lastName" value="{{ lastname }}">
+	{{else}}
+		<label for="last-name">Last name</label>
+		<input type="text" id="last-name" name="lastName">
+	{{/if}}
+
+	{{#if profilePicture}}
+	<label for="profile-picture">Profile picture</label>
+	<input id="profile-picture" type="file" name="profile-picture" value="{{ profilePicture }}">
+	{{else}}
+	<label for="profile-picture"></label>
+	<input id="profile-picture" type="file" name="profile-picture">
 	{{/if}}
 
 	{{#if passwordTaken}}
 		<label class="label-error" for="password">Password</label>
-		<input class="input-error" type="password" id="password" name="password">
+		<input class="input-error" type="password" id="password" name="password" value="{{ password }}">
 	{{else}}
+		{{#if password}}
+		<label for="password">Password</label>
+		<input type="password" id="password" name="password" value="{{ password }}">
+		{{else}}
 		<label for="password">Password</label>
 		<input type="password" id="password" name="password">
+		{{/if}}
 	{{/if}}
 
 	{{#if under18}}
 		<label class="label-error" for="age">Age</label>
-		<input class="input-error" type="number" id="age" name="age">
+		<input class="input-error" type="number" id="age" name="age" value="{{ age }}">
 	{{else}}
-		<label for="age">Age</label>
-		<input type="number" id="age" name="age">
+		{{#if age}}
+			<label for="age">Age</label>
+			<input type="number" id="age" name="age" value="{{ age }}">
+		{{else}}
+			<label for="age">Age</label>
+			<input type="number" id="age" name="age">
+		{{/if}}
 	{{/if}}
+
 
 	{{#if hobbies.length}}
 		{{#each hobbies}}
@@ -29,16 +68,13 @@
 			<input type="text" name="hobbies" id="hobby-{{@index}}" value="{{this}}">
 		{{/each}}
 	{{else}}
-		<label for="hobby-0">Hobby</label>
+		<label for="hobby-0">Hobby 1</label>
 		<input type="text" name="hobbies" id="hobby-0">
 	{{/if}}
 
-	
-	
+	<button type="submit" formaction="create-account" value="add" name="hobbyAmount">Add Hobby</button>
 
-	<button type="submit" formaction="createAccount" value="add" name="hobbyAmount">Add Hobby</button>
-
-	<button type="submit" formaction="createAccount" value="remove" name="hobbyAmount">Remove Hobby</button>
+	<button type="submit" formaction="create-account" value="remove" name="hobbyAmount">Remove Hobby</button>
 
 	<button type="submit">Create Account</button>
 

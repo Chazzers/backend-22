@@ -1,0 +1,13 @@
+:root {
+	--spacing: 3em;
+	--padding: 1em;
+	--margin: 1em;
+}
+
+* {
+	box-sizing: border-box;
+	line-height: 1.5;
+}
+
+h1 {
+}

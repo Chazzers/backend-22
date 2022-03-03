@@ -4,6 +4,7 @@ const app = express()
 const port = 3000
 import mongoose from 'mongoose'
 import compression from 'compression'
+import session from 'express-session'
 
 import {} from 'dotenv/config'
 
@@ -15,8 +16,12 @@ import renderHome from './controllers/render/renderHome.js'
 import renderCreateAccount from './controllers/render/renderCreateAccount.js'
 import renderLogin from './controllers/render/renderLogin.js'
 
-// Controller helper functions
+//controller post functions
 import createAccount from './controllers/post/createAccount.js'
+import login from './controllers/post/login.js'
+
+// Controller helper functions
+
 
 const uri = process.env.MONGODB_URI
 
@@ -27,6 +32,12 @@ app.use(express.static('public'))
 		extended: true
 	}))
 	.use(express.json())
+	.use(session({
+		secret: process.env.SESSION_SECRET,
+		resave: false,
+		saveUninitialized: true,
+		cookie: {}
+	}))
 	.use(compression())
 
 	.engine('hbs', engine({
@@ -52,11 +63,13 @@ app.use(express.static('public'))
 
 	.set('view engine', 'hbs')
 	.set('views', './views')
+	.set('trust proxy', 1) // trust first proxy
 
 	.get('/', renderHome)
 	.get('/create-account', renderCreateAccount)
 	.get('/login', renderLogin)
-
-	.post('/createAccount', createAccount)
+	
+	.post('/login', login)
+	.post('/create-account', createAccount)
 	
 	.listen(process.env.PORT || port, () => console.log(`Example app listening on port http://localhost:${port}!`))
