@@ -10,7 +10,7 @@ const userSchema = new Schema({
 	gender: String,
 	age: Number,
 	hobbies: Array,
-	likes: Array
+	likedGames: Array
 })
 
 const User = mongoose.model('User', userSchema)

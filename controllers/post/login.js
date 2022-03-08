@@ -4,13 +4,9 @@ const login = async (req, res) => {
 	try {
 		const { username, password } = req.body
 
-		const user = await User.find({
+		const currentUser = await User.findOne({
 			username: username
 		})
-	
-		const currentUser = user[0]
-	
-		console.log(currentUser)
 	
 		const wrongPassword = currentUser.password !== password ? true : false
 	
@@ -26,9 +22,10 @@ const login = async (req, res) => {
 				// lastName: currentUser.lastName,
 				age: currentUser.age,
 				// gender: currentUser.gender,
-				hobbies: currentUser.hobbies
+				hobbies: currentUser.hobbies,
+				likedGames: currentUser.likedGames
 			}
-			res.redirect('/')
+			res.redirect('/games')
 		}
 	} catch(err) {
 		return err

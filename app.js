@@ -15,10 +15,12 @@ import { engine } from 'express-handlebars'
 import renderHome from './controllers/render/renderHome.js'
 import renderCreateAccount from './controllers/render/renderCreateAccount.js'
 import renderLogin from './controllers/render/renderLogin.js'
+import renderGamesList from './controllers/render/renderGamesList.js'
 
 //controller post functions
 import createAccount from './controllers/post/createAccount.js'
 import login from './controllers/post/login.js'
+import postLike from './controllers/post/postLike.js'
 
 // Controller helper functions
 
@@ -68,8 +70,10 @@ app.use(express.static('public'))
 	.get('/', renderHome)
 	.get('/create-account', renderCreateAccount)
 	.get('/login', renderLogin)
+	.get('/games', renderGamesList)
 	
 	.post('/login', login)
 	.post('/create-account', createAccount)
+	.post('/like-game', postLike)
 	
 	.listen(process.env.PORT || port, () => console.log(`Example app listening on port http://localhost:${port}!`))
