@@ -1,0 +1,1 @@
+const filterOnMultiValues = (array, filterValues) => array.filter(item => filterValues.includes(item))

@@ -1,7 +1,7 @@
 // server packages
 import express from 'express'
 const app = express()
-const port = 3000
+const port = process.env.PORT || 3000
 import mongoose from 'mongoose'
 import compression from 'compression'
 import session from 'express-session'
@@ -41,6 +41,15 @@ app.use(express.static('public'))
 		cookie: {}
 	}))
 	.use(compression())
+	.use((req, res, next) => {
+		if(req.path === '/login' || req.path === '/create-account') {
+			next()
+		} else if(req.session.user === undefined) {
+			res.redirect('/login')
+		} else {
+			next()
+		}
+	})
 
 	.engine('hbs', engine({
 		defaultLayout: 'layout', 

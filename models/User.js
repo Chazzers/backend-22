@@ -9,7 +9,7 @@ const userSchema = new Schema({
 	lastName: String,
 	gender: String,
 	age: Number,
-	hobbies: Array,
+	favGameGenres: Array,
 	likedGames: Array
 })
 

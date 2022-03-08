@@ -11,6 +11,20 @@
 		<input type="text" id="username" name="username">
 		{{/if}}
 	{{/if}}
+
+	{{#if passwordTaken}}
+		<label class="label-error" for="password">Password</label>
+		<input class="input-error" type="password" id="password" name="password" value="{{ password }}">
+	{{else}}
+		{{#if password}}
+		<label for="password">Password</label>
+		<input type="password" id="password" name="password" value="{{ password }}">
+		{{else}}
+		<label for="password">Password</label>
+		<input type="password" id="password" name="password">
+		{{/if}}
+	{{/if}}
+	
 	{{#if firstName}}
 		<label for="first-name">First name</label>
 		<input type="text" id="first-name" name="firstName" value="{{ firstName }}">
@@ -27,25 +41,16 @@
 		<input type="text" id="last-name" name="lastName">
 	{{/if}}
 
-	{{#if profilePicture}}
-		<label for="profile-picture">Profile picture</label>
-		<input id="profile-picture" type="file" name="profile-picture" value="{{ profilePicture }}">
+	{{#if gender}}
+		<label for="gender">Gender</label>
+		<input id="gender" type="file" name="profile-picture" value="{{ profilePicture }}">
 	{{else}}
-		<label for="profile-picture"></label>
-		<input id="profile-picture" type="file" name="profile-picture">
-	{{/if}}
-
-	{{#if passwordTaken}}
-		<label class="label-error" for="password">Password</label>
-		<input class="input-error" type="password" id="password" name="password" value="{{ password }}">
-	{{else}}
-		{{#if password}}
-		<label for="password">Password</label>
-		<input type="password" id="password" name="password" value="{{ password }}">
-		{{else}}
-		<label for="password">Password</label>
-		<input type="password" id="password" name="password">
-		{{/if}}
+		<label for="gender"></label>
+		<select name="gender" id="gender">
+			<option value="male">Male</option>
+			<option value="female">Female</option>
+			<option value="other">Other</option>
+		</select>
 	{{/if}}
 
 	{{#if under18}}
@@ -62,19 +67,29 @@
 	{{/if}}
 
 
-	{{#if hobbies.length}}
-		{{#each hobbies}}
-			<label for="hobby-{{@index}}">Hobby {{math @index '+' 1}}</label>
-			<input type="text" name="hobbies" id="hobby-{{@index}}" value="{{this}}">
-		{{/each}}
+	{{#if favGameGenres.length}}
+			{{#each favGameGenres}}
+				<label for="genre-{{@index}}">Favorite game genre {{math @index '+' 1}}</label>
+				<select id="genres-{{@index}}" name="favGameGenres">
+					<option value="">-- Select Favorite Game Genre --</option>
+					{{#each ../gameGenres}}
+						<option value="{{this.slug}}">{{this.name}}</option>
+					{{/each}}
+				</select>
+			{{/each}}
 	{{else}}
-		<label for="hobby-0">Hobby 1</label>
-		<input type="text" name="hobbies" id="hobby-0">
+		<label for="genre-1">Favorite game genre 1</label>
+		<select id="genres-1" name="favGameGenres">
+			<option value="">-- Select Favorite Game Genre --</option>
+			{{#each gameGenres}}
+				<option value="{{this.slug}}">{{this.name}}</option>
+			{{/each}}
+		</select>
 	{{/if}}
 
-	<button type="submit" formaction="create-account" value="add" name="hobbyAmount">Add Hobby</button>
+	<button type="submit" formaction="create-account" value="add" name="genreAmount">Add Favorite game genre</button>
 
-	<button type="submit" formaction="create-account" value="remove" name="hobbyAmount">Remove Hobby</button>
+	<button type="submit" formaction="create-account" value="remove" name="genreAmount">Remove Favorite game genre</button>
 
 	<button type="submit">Create Account</button>
 
