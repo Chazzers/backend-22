@@ -3,7 +3,7 @@ import getData from '../helpers/getData.js'
 const renderGamesList = async (req, res) => {
 	try {
 		const title = 'Games'
-		console.log(req.session.user)
+		const likedGames = req.session.user
 
 		const games = await getData(`https://api.rawg.io/api/games?key=${process.env.API_KEY}`)
 			.then(games => games.results)
@@ -11,7 +11,8 @@ const renderGamesList = async (req, res) => {
 
 		res.render('games', {
 			title: title,
-			games: games
+			games: games,
+			likedGames:
 		})
 	} catch(err) {
 		return err

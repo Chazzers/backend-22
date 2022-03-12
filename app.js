@@ -38,9 +38,7 @@ app.use(express.static('public'))
 		secret: process.env.SESSION_SECRET,
 		resave: false,
 		saveUninitialized: true,
-		cookie: {
-			secure: true
-		}
+		cookie:{}
 	}))
 	.use(compression())
 	.use((req, res, next) => {
