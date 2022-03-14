@@ -4,19 +4,21 @@ const postDislike = async (req, res) => {
 	const { dislike } = req.body
 	let { username, likedGames } = req.session.user
 
-	const filteredLikedGames = likedGames.filter(game => game.id === dislike)
+	const filteredLikedGames = likedGames.filter(game => game !== dislike)
 
-	likedGames = filteredLikedGames
+	console.log(filteredLikedGames)
+
+	req.session.user.likedGames = filteredLikedGames
 
 	const currentUser = User.findOne({
 		username: username
 	})
 
 	await currentUser.updateOne({
-		likedGames: filteredLikedGames
+		'likedGames': filteredLikedGames
 	})
 
-	res.redirect('/liked-games')
+	res.redirect('/my-profile')
 }
 
 export default postDislike

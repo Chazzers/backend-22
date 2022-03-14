@@ -1,0 +1,17 @@
+<article class="profile-card">
+	<header>
+		<h2>{{ firstName }} {{lastName}}</h2>
+		<p>{{ age }}</p>
+	</header>
+	
+	<h3>Favorite genres</h3>
+	<section class="game-genres">
+		{{#each favGameGenres}}
+			<p>{{ this }}</p>
+		{{/each}}
+	</section>
+	<footer>
+		<h3>Liked games</h3>
+		{{> GamesList}}
+	</footer>
+</article>

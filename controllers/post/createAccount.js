@@ -7,6 +7,7 @@ const createAccount = async (req, res) => {
 		let { username, password, age, firstName, lastName, favGameGenres, genreAmount, gender } = req.body
 		const genreValues = []
 		const users = await User.find({})
+		const loggedIn = req.session.user ? false : true
 	
 		const usernames = extractAllValuesFromKey(users, 'username')
 		const passwords = extractAllValuesFromKey(users, 'password')
@@ -38,6 +39,7 @@ const createAccount = async (req, res) => {
 				firstName: firstName,
 				lastName: lastName,
 				gender: gender,
+				loggedIn: loggedIn
 			})
 		} else if(usernameTaken || passwordTaken || under18) {
 			return res.render('create-account', {

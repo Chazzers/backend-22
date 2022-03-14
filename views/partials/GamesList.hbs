@@ -1,0 +1,21 @@
+<section class="games-list">
+	{{#each games }}
+		<article class="game-card">
+			<header>
+				<img src="{{this.background_image}}" alt="">
+			</header>
+			<footer>
+				<p>{{ this.name }}</p>
+				{{#if ../myProfile }}
+				<form action="dislike-game" method="POST">
+					<button class="like-button" name="dislike" value="{{this.id}}" type="submit">Dislike game</button> 
+				</form>
+				{{else}}
+				<form action="like-game" method="POST">
+					<button class="like-button" name="newLike" value="{{this.id}}" type="submit">like game</button>
+				</form>
+				{{/if}}
+			</footer>
+		</article>
+	{{/each}}
+</section>

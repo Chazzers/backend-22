@@ -1,10 +1,1 @@
-{{> LoginForm }}
-{{#each games}}
-	<article>
-		<p>{{this.name}}</p>
-		<img src="" alt="">
-		<form action="like-game" method="POST">
-			<button class="like-button" name="newLike" value="{{this.id}}" type="submit">Like game</button>
-		</form>
-	</article>
-{{/each}}
+{{> GamesList }}

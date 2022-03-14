@@ -16,15 +16,15 @@ import renderHome from './controllers/render/renderHome.js'
 import renderCreateAccount from './controllers/render/renderCreateAccount.js'
 import renderLogin from './controllers/render/renderLogin.js'
 import renderGamesList from './controllers/render/renderGamesList.js'
+import renderMyProfile from './controllers/render/renderMyProfile.js'
 
 //controller post functions
 import createAccount from './controllers/post/createAccount.js'
 import login from './controllers/post/login.js'
 import postLike from './controllers/post/postLike.js'
+import postDislike from './controllers/post/postDislike.js'
 
 // Controller helper functions
-
-
 const uri = process.env.MONGODB_URI
 
 mongoose.connect(uri)
@@ -80,9 +80,11 @@ app.use(express.static('public'))
 	.get('/create-account', renderCreateAccount)
 	.get('/login', renderLogin)
 	.get('/games', renderGamesList)
+	.get('/my-profile', renderMyProfile)
 	
 	.post('/login', login)
 	.post('/create-account', createAccount)
 	.post('/like-game', postLike)
+	.post('/dislike-game', postDislike)
 	
 	.listen(process.env.PORT || port, () => console.log(`Example app listening on port http://localhost:${port}!`))
