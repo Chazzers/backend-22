@@ -8,7 +8,7 @@ Repository for backend subject of HvA. This repository containst the application
 - Create account
 - Login
 
-Underneath I will explain how my code works
+Underneath you can see the functions used to make these features work. I hope my comments will suffice as an explanation to how my code functions. 
 
 ### Like games
 
