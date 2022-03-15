@@ -12,11 +12,10 @@ const login = async (req, res) => {
 		
 		// check if password of user input is different from password from user in database
 		const wrongPassword = currentUser.password !== password ? true : false
-	
 
 		if(wrongPassword) {
-			// if the password is wrong, re-render page with wrong password variable passed on
-			res.render('index', {
+			// check if password is wrong, if it's wrong render login with wrongPassword var
+			res.render('login', {
 				wrongPassword: wrongPassword
 			})
 		} else {
@@ -34,7 +33,10 @@ const login = async (req, res) => {
 			res.redirect('/games')
 		}
 	} catch(err) {
-		return err
+		console.log(err)
+		res.render('login', {
+			wrongUsername: true,
+		})
 	}
 }
 

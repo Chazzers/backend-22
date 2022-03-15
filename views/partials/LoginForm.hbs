@@ -1,6 +1,13 @@
 <form action="login" method="POST">
-	<label for="username">Username</label>
-	<input type="text" name="username" id="username">
+	{{#if wrongUsername}}
+		<label class="label-error" for="username">Username</label>
+		<input class="input-error" type="text" name="username" id="username">
+	{{else}}
+		<label for="username">Username</label>
+		<input type="text" name="username" id="username">
+	{{/if}}
+
+	
 	{{#if wrongPassword}}
 		<label class="label-error" for="password">Password</label>
 		<input class="input-error" type="password" name="password" id="password">
