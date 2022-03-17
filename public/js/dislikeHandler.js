@@ -1,8 +1,8 @@
-const likeHandler = async (event) => {
+const dislikeHandler = async (event) => {
 	event.preventDefault()
 	const { value } = event.currentTarget
 	const likeValue = {
-		newLike: value
+		dislike: value
 	}
 
 	const games = document.querySelectorAll('.game-card')
@@ -10,12 +10,10 @@ const likeHandler = async (event) => {
 
 	const likedGames = gamesArray.filter(game => game.dataset.id === value)
 
-	console.log(likedGames)
-
 	likedGames.forEach(game => game.classList.add('liked'))
 	setTimeout(() => likedGames.forEach(game => game.classList.add('like-remove')), 1000)
 	
-	const response = await fetch('/like-game', {
+	const response = await fetch('/dislike-game', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'
@@ -25,4 +23,4 @@ const likeHandler = async (event) => {
 	return response
 }
 
-export default likeHandler
+export default dislikeHandler

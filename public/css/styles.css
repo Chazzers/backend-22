@@ -125,13 +125,29 @@ header h3 {
 	justify-content: space-around;
 }
 .game-card {
-	width: 30em;
 	background-color: white;
 	padding: 1em;
 	box-shadow: 0px 0px 30px rgba(0,0,0,0.3);
 	max-height: 25em;
 	margin-bottom: 1em;
 	border-radius: 8px;
+	flex: 1 1 30em;
+	transition: all 1s ease;
+	max-width: 100%;
+	min-width: 30em;
+}
+
+.game-card:nth-child(3n+1) {
+	margin-right: 1em;
+}
+
+.game-card:nth-child(3n) {
+	margin-left: 1em;
+}
+
+.game-card form {
+	width: auto;
+	display: block;
 }
 
 .game-card header {
@@ -158,4 +174,15 @@ header h3 {
 
 .game-card footer {
 	background-color: white;
+}
+
+.liked {
+	min-width: 0;
+	max-width: 0;
+	white-space: nowrap;
+	opacity: 0;
+}
+
+.like-remove {
+	display: none;
 }

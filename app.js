@@ -68,6 +68,10 @@ app.use(express.static('public'))
 					'/': lvalue / rvalue,
 					'%': lvalue % rvalue
 				}[operator]
+			},
+			// helper for normal if statement in handlebars
+			ifEquals: (string, array, options) =>  {
+				return (!array.includes(`${string}`)) ? options.fn(this) : options.inverse(this)
 			}
 		}
 	}))
@@ -87,4 +91,4 @@ app.use(express.static('public'))
 	.post('/like-game', postLike)
 	.post('/dislike-game', postDislike)
 	
-	.listen(process.env.PORT || port, () => console.log(`Example app listening on port http://localhost:${port}!`))
+	.listen(process.env.PORT || port, () => console.log(`Example app listening on port http://localhost:${port}`))
